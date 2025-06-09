@@ -58,6 +58,8 @@ That is, taking wx6_2.44 as an example, both of the following directories should
 - /data/user/0/com.tencent.mm/files/wx6_2.44/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/wx6_2.44/
 
+In addition, if the WeChat you are using is in a multi-user system, please replace 0 in the directory /data/user/0/com.tencent.mm/files/ in the above operations with your user ID, such as 999. 
+
 ### FKZ_WX_DATA
 
 If you used the WechatXposed plugin before, the WechatXposed plugin can work after importing only the core files. 
@@ -140,6 +142,8 @@ That is, both of the following directory should exist and should not be empty on
 - /data/user/0/com.tencent.mm/files/wx6_2.44/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/wx6_2.44/
 
+此外，如果您所使用的微信位于多用户系统中，请将以上操作中的目录 /data/user/0/com.tencent.mm/files/ 中的 0 替换为您的用户 ID，例如 999。
+
 ### FKZ_WX_DATA
 
 如果之前已经使用过微 X 模块，只需要导入核心文件即可使用微 X 模块。
@@ -154,7 +158,7 @@ That is, both of the following directory should exist and should not be empty on
 - /data/data/com.tencent.mm/databases/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_DATABASE/
 
-## 特别鸣谢
+## 致谢
 
 - [https://github.com/fkzhang/WechatUnrecalled](https://github.com/fkzhang/WechatUnrecalled)
 - [https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed](https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed)
