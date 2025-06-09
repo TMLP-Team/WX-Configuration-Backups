@@ -9,7 +9,7 @@ Please:
 
 ## Architecture
 
-Here is an overview of the architecture. 
+Here is an overview of the architecture. To facilitate separate downloading, each bottom-level folder has been converted into a ZIP file, whose content is the same as the original folder and requires decompression after downloading. 
 
 ```
 ├─Core files
@@ -92,7 +92,7 @@ That is, the following directory should exist and should not be empty.
 
 ## 架构
 
-架构总览如下。
+架构总览如下。为方便单独下载，每个最基层的文件夹都被转换为了一个压缩包，压缩包内容与原文件夹相同，下载后需要解压后使用。
 
 ```
 ├─核心文件
