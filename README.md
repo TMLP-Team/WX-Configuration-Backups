@@ -48,12 +48,12 @@ Here is an overview of the architecture. To facilitate separate downloading, eac
 
 The child level of this folder indicates the WeChat version. The child level of a WeChat version indicates the plugin version, which is the folder that needs to be copied.
 
-Please **copy** the corresponding GitHub repository folder (e.g., wx6_2.44) adapted to both your WeChat and WechatXposed **to** both of the following directories (the second one is optional) on your Android device. Subsequently, grant 777 permissions for the two copied folders. 
+Please **copy** the corresponding GitHub repository folder (e.g., wx6_2.44) adapted to both your WeChat and WechatXposed **to** both of the following directories (the second one is optional) on your Android device. Subsequently, grant 755 permissions for the two copied folders and 644 permissions for the files inside them. 
 
 - /data/user/0/com.tencent.mm/files/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/
 
-That is, taking wx6_2.44 as an example, both of the following directories should exist and should not be empty, with permissions set to 777, on your Android device, after successful operations. The second one is optional. 
+That is, taking wx6_2.44 as an example, both of the following directories should exist and should not be empty, with permissions set to 755 for folders and 644 for the files inside them, on your Android device, after successful operations. The second one is optional. 
 
 - /data/user/0/com.tencent.mm/files/wx6_2.44/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/wx6_2.44/
@@ -132,12 +132,12 @@ That is, both of the following directory should exist and should not be empty on
 
 该文件夹的下一层为微信版本；再下一层为插件版本，即为需要被复制的文件夹。
 
-请将对应您微信和微 X 模块的 GitHub 仓库文件夹（例如 wx6_2.44）复制到您安卓设备的以下两个目录下（第二个目录不是必须的）并授予 777 权限。
+请将对应您微信和微 X 模块的 GitHub 仓库文件夹（例如 wx6_2.44）复制到您安卓设备的以下两个目录下（第二个目录不是必须的）并分别向目录和目录内的文件授予 755 和 644 权限。
 
 - /data/user/0/com.tencent.mm/files/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/
 
-即，以 wx6_2.44 为例，操作完成后，在您的安卓设备中，以下两个目录应当存在且非空，其权限为 777。第二个目录不是必须的。
+即，以 wx6_2.44 为例，操作完成后，在您的安卓设备中，以下两个目录应当存在且非空，其权限为 755，其里面的文件的权限为 644。第二个目录不是必须的。
 
 - /data/user/0/com.tencent.mm/files/wx6_2.44/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/wx6_2.44/
