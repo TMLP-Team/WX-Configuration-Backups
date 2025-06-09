@@ -79,6 +79,7 @@ That is, both of the following directory should exist and should not be empty on
 - [https://github.com/Xposed-Modules-Repo/wx.repair.tool](https://github.com/Xposed-Modules-Repo/wx.repair.tool)
 - [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
 - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
+- [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
 
 ---
 
@@ -160,3 +161,4 @@ That is, both of the following directory should exist and should not be empty on
 - [https://github.com/Xposed-Modules-Repo/wx.repair.tool](https://github.com/Xposed-Modules-Repo/wx.repair.tool)
 - [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
 - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
+- [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
