@@ -30,19 +30,13 @@ Here is an overview of the architecture. To facilitate separate downloading, eac
 └─FKZ_WX_DATA
     ├─8.0.49
     │  └─x7_3.0
-    │      └─BACKUP_DATABASE
     │  └─wx6_2.44
-    │      └─BACKUP_DATABASE
     │  └─wx6_2.43
-    │      └─BACKUP_DATABASE
     │  └─...
     ├─8.0.48
     │  └─x7_3.0
-    │      └─BACKUP_DATABASE
     │  └─wx6_2.44
-    │      └─BACKUP_DATABASE
     │  └─wx6_2.43
-    │      └─BACKUP_DATABASE
     │  └─...
     ├─...
     │  └─...
@@ -54,12 +48,12 @@ Here is an overview of the architecture. To facilitate separate downloading, eac
 
 The child level of this folder indicates the WeChat version. The child level of a WeChat version indicates the plugin version, which is the folder that needs to be copied.
 
-Please copy the corresponding folder (e.g., we6_2.44) adapted to both your WeChat and WechatXposed to both of the following directories (the second one is optional). Subsequently, grant 777 permissions for the two copied folders. 
+Please **copy** the corresponding GitHub repository folder (e.g., we6_2.44) adapted to both your WeChat and WechatXposed **to** both of the following directories (the second one is optional) on your Android device. Subsequently, grant 777 permissions for the two copied folders. 
 
 - /data/user/0/com.tencent.mm/files/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/
 
-That is, taking we6_2.44 as an example, both of the following directories should exist and should not be empty, with permissions set to 777. The second one is optional. 
+That is, taking we6_2.44 as an example, both of the following directories should exist and should not be empty, with permissions set to 777, on your Android device, after successful operations. The second one is optional. 
 
 - /data/user/0/com.tencent.mm/files/we6_2.44/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/we6_2.44/
@@ -68,12 +62,14 @@ That is, taking we6_2.44 as an example, both of the following directories should
 
 It seems that the WechatXposed plugin can work after importing only the core files. Currently, no files related to FKZ_WX_DATA are offered here. 
 
-Please copy the corresponding BACKUP_DATABASE folder adapted to both your WeChat and WechatXposed to the following directory if necessary. 
+Please **copy** the files in corresponding GitHub repository folder adapted to both your WeChat and WechatXposed **to** the following directory on your Android device if necessary. 
 
-- /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/
+- /data/data/com.tencent.mm/databases/
+- /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_DATABASE/
 
-That is, the following directory should exist and should not be empty. 
+That is, the following directory should exist and should not be empty on your Android device after successful operations. 
 
+- /data/data/com.tencent.mm/databases/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_DATABASE/
 
 ## Acknowledgement
@@ -113,19 +109,13 @@ That is, the following directory should exist and should not be empty.
 └─FKZ_WX_DATA
     ├─8.0.49
     │  └─x7_3.0
-    │      └─BACKUP_DATABASE
     │  └─wx6_2.44
-    │      └─BACKUP_DATABASE
     │  └─wx6_2.43
-    │      └─BACKUP_DATABASE
     │  └─……
     ├─8.0.48
     │  └─x7_3.0
-    │      └─BACKUP_DATABASE
     │  └─wx6_2.44
-    │      └─BACKUP_DATABASE
     │  └─wx6_2.43
-    │      └─BACKUP_DATABASE
     │  └─……
     ├─……
     │  └─……
@@ -137,12 +127,12 @@ That is, the following directory should exist and should not be empty.
 
 该文件夹的下一层为微信版本；再下一层为插件版本，即为需要被复制的文件夹。
 
-请将对应您微信和微 X 模块的文件夹（例如 we6_2.44）复制到以下两个目录下（第二个目录不是必须的）并授予 777 权限。
+请将对应您微信和微 X 模块的 GitHub 仓库文件夹（例如 we6_2.44）复制到您安卓设备的以下两个目录下（第二个目录不是必须的）并授予 777 权限。
 
 - /data/user/0/com.tencent.mm/files/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/
 
-即，以 we6_2.44 为例，操作完成后，以下两个目录应当存在且非空，其权限为 777。第二个目录不是必须的。
+即，以 we6_2.44 为例，操作完成后，在您的安卓设备中，以下两个目录应当存在且非空，其权限为 777。第二个目录不是必须的。
 
 - /data/user/0/com.tencent.mm/files/we6_2.44/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_MODULE/we6_2.44/
@@ -151,12 +141,14 @@ That is, the following directory should exist and should not be empty.
 
 看起来似乎只需要导入核心文件即可使用微 X 模块。目前，此处暂未提供关于 FKZ_WX_DATA 的文件。
 
-如有需要，请将对应您微信和微 X 模块的 BACKUP_DATABASE 文件夹到以下目录下。
+如有需要，请将对应您微信和微 X 模块的 GitHub 仓库文件夹**中的文件**复制到您安卓设备的以下两个目录下。
 
-- /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/
+- /data/data/com.tencent.mm/databases/
+- /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_DATABASE/
 
-即，操作完成后，以下目录应当存在且为非空。
+即，操作完成后，在您的安卓设备中，以下目录应当存在且为非空。
 
+- /data/data/com.tencent.mm/databases/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_DATABASE/
 
 ## 特别鸣谢
