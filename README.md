@@ -74,6 +74,10 @@ That is, both of the following directory should exist and should not be empty on
 - /data/data/com.tencent.mm/databases/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_DATABASE/
 
+## autoImport.sh
+
+By executing it locally with root privileges on your Android device after checking it, this script will automatically import the core data and FKZ_WX_DATA files for the WechatXposed or the X plugin. 
+
 ## Acknowledgement
 
 - [https://github.com/fkzhang/WechatUnrecalled](https://github.com/fkzhang/WechatUnrecalled)
@@ -157,6 +161,10 @@ That is, both of the following directory should exist and should not be empty on
 
 - /data/data/com.tencent.mm/databases/
 - /sdcard/Android/data/com.tencent.mm/files/WechatXposed/BACKUP/BACKUP_DATABASE/
+
+## autoImport.sh
+
+在安卓设备上审计后使用 root 权限本地执行，该脚本将基于本存储库自动向安卓设备本地导入微 X 模块或 X 模块核心文件和 FKZ_WX_DATA。
 
 ## 致谢
 
