@@ -55,6 +55,10 @@ then
 	echo "由于无法获取微信版本，本脚本即将退出（11）。"
 	exit 11
 fi
+if [[ $(expr ${wechatVersionCode} % 20) -ne 0 ]];
+then
+	wechatVersionName="Play ${wechatVersionName}"
+fi
 wechatVersionPlain="${wechatVersionName} (${wechatVersionCode})"
 wechatVersionData="${wechatVersionName}%20(${wechatVersionCode})"
 wxVersionName="$(dumpsys package ${wxPackageName} | grep versionName | cut -d '=' -f2)"
