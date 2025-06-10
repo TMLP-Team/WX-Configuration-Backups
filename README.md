@@ -2,7 +2,7 @@
 
 本存储库旨在存储微 X 模块的配置。此外，此处提供了一个自动导入配置的 shell 脚本。
 
-请安装最新版 WX Repair Tool 并重启微信。
+请安装最新版 WX Repair Tool 并重启微信。为便于表述，以下内容中微 X 模块包含 2.x 系列的微 X 模块和 3.0 版本的 X 模块。
 
 ## 架构
 
@@ -73,7 +73,7 @@
 
 ## autoImport.sh
 
-在安卓设备上审计后使用 root 权限本地执行，该脚本将基于本存储库自动向安卓设备本地导入微 X 模块或 X 模块核心文件和 FKZ_WX_DATA。
+在安卓设备上审计后使用 root 权限本地执行，该脚本将基于本存储库自动向安卓设备本地导入微 X 模块核心文件和 FKZ_WX_DATA。
 
 ## 常见异常处理
 
@@ -107,6 +107,8 @@ Please:
 - Install and activate the latest WX Repair Tool; 
 - Force-stop the WeChat; and
 - Launch WeChat again. 
+
+To make it convenient, the WechatXposed plugin in the following content includes 2.x series of the WechatXposed plugin and X 3.0. 
 
 ## Architecture
 
@@ -177,7 +179,7 @@ That is, both of the following directories should exist and should not be empty 
 
 ## autoImport.sh
 
-By executing it locally with root privileges on your Android device after checking it, this script will automatically import the core data and FKZ_WX_DATA files for the WechatXposed or the X plugin. 
+By executing it locally with root privileges on your Android device after checking it, this script will automatically import the core data and FKZ_WX_DATA files for the WechatXposed plugin. 
 
 ## Exceptions
 
