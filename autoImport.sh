@@ -1,6 +1,7 @@
 #!/system/bin/sh
 readonly EXIT_SUCCESS=0
-readonly EXIT_FAILURE=0
+readonly EXIT_FAILURE=1
+readonly EOF=255
 readonly scriptName="autoImport.sh"
 readonly repositoryHomePage="https://github.com/TMLP-Team/WX-Configuration-Backups"
 readonly repositoryContentLink="https://raw.githubusercontent.com/TMLP-Team/WX-Configuration-Backups/main"
@@ -24,7 +25,7 @@ else
 	readonly downloadFolderPath="/sdcard/Download"
 fi
 
-# Welcome (0X) #
+# Welcome (1--2) #
 echo "Welcome to the \`\`${scriptName}\`\`. Please check the script before you execute it. "
 echo "欢迎使用 \`\`${scriptName}\`\`，请审计该脚本后再执行该脚本。"
 echo ""
@@ -44,9 +45,10 @@ else
 	exit 2
 fi
 
-# Versions (1X) #
+# Versions (11--14) #
 wechatVersionName="$(dumpsys package ${wechatPackageName} | grep versionName | cut -d '=' -f2)"
 wechatVersionCode="$(dumpsys package ${wechatPackageName} | grep versionCode | cut -d '=' -f2 | cut -d ' ' -f1)"
+wechatUserId="$(dumpsys package ${wechatPackageName} | grep userId | cut -d '=' -f2)"
 if [[ -z "${wechatVersionName}" || -z "${wechatVersionCode}" ]];
 then
 	echo "This script will exit soon due to the unknown WeChat version (11). "
@@ -166,16 +168,27 @@ then
 		echo ""
 		exit 25
 	fi
-	if chmod 755 "${coreData0FolderInternalPath}" && find "${coreData0FolderInternalPath}" -type f -exec chmod 644 {} \;
+	if chmod 755 "${coreData0FolderInternalPath}" && find "${coreData0FolderInternalPath}" -type d -exec chmod 755 {} \; && find "${coreData0FolderInternalPath}" -type f -exec chmod 644 {} \;
 	then
-		echo "Successfully granted 755 and 644 permissions to the internal core data folder \"${coreData0FolderInternalPath}\" and the files inside it, respectively. "
-		echo "成功向内部核心文件数据文件夹 \"${coreData0FolderInternalPath}\" 及其中的文件分别授予 755 和 644 权限。"
+		echo "Successfully granted 755 permissions to the internal core data folder \"${coreData0FolderInternalPath}\". Successfully granted 755 and 644 permissions to its subfolders and subfiles, respectively. "
+		echo "成功向内部核心文件数据文件夹 \"${coreData0FolderInternalPath}\" 授予 755 权限，并对其子文件夹和子文件分别授予 755 和 644 权限。"
 		echo ""
 	else
-		echo "Failed to grant 755 and 644 permissions to the internal core data folder \"${coreData0FolderInternalPath}\" and the files inside it, respectively (26). "
-		echo "无法向内部核心文件数据文件夹 \"${coreData0FolderInternalPath}\" 及其中的文件分别授予 755 和 644 权限（26）。"
+		echo "Failed to grant 755 permissions to the internal core data folder \"${coreData0FolderInternalPath}\" or 755 and 644 permissions to its subfolders and subfiles, respectively (26). "
+		echo "无法向内部核心文件数据文件夹 \"${coreData0FolderInternalPath}\" 授予 755 权限，或无法对其子文件夹和子文件分别授予 755 和 644 权限（26）。"
 		echo ""
 		exit 26
+	fi
+	if [[ -z "$(find "${coreData0FolderInternalPath}" -exec chown ${wechatUserId} {} \; -exec chgrp ${wechatUserId} {} \; 2>&1)" ]];
+	then
+		echo "Successfully changed the owner and the user group of \"${coreData0FolderInternalPath}\" and the files inside it to ${wechatUserId}. "
+		echo "成功将文件夹 \"${coreData0FolderInternalPath}\" 及其子文件的所有者和用户组更改为 ${wechatUserId}。"
+		echo ""
+	else
+		echo "Failed to change the owner and the user group of \"${coreData0FolderInternalPath}\" and the files inside it to ${wechatUserId} (27). "
+		echo "无法将文件夹 \"${coreData0FolderInternalPath}\" 及其子文件的所有者和用户组更改为 ${wechatUserId}（27）。"
+		echo ""
+		exit 27
 	fi
 else
 	echo "The parent directory of the internal core data folder \"${coreData0FolderPath}\" does not exist, skipping. "
@@ -198,21 +211,32 @@ then
 		echo "Failed to copy the decompressed core data folder \"${coreDataDownloadFolderPath}\" to \"${coreData999FolderInternalPath}\". "
 		echo "无法将解压后的核心文件数据文件夹 \"${coreDataDownloadFolderPath}\" 复制到 \"${coreData999FolderInternalPath}\"。"
 		echo ""
-		echo "Please try to import the core data by the WX Repair Tool or by yourselve (27). "
-		echo "请尝试使用 WX Repair Tool 或手动导入核心文件数据（27）。"
-		echo ""
-		exit 27
-	fi
-	if chmod 755 "${coreData999FolderInternalPath}" && find "${coreData999FolderInternalPath}" -type f -exec chmod 644 {} \;
-	then
-		echo "Successfully granted 755 and 644 permissions to the multi-user system internal core data folder \"${coreData999FolderInternalPath}\" and the files inside it, respectively. "
-		echo "成功向双开内部核心文件数据文件夹 \"${coreData999FolderInternalPath}\" 及其中的文件分别授予 755 和 644 权限。"
-		echo ""
-	else
-		echo "Failed to grant 755 and 644 permissions to the multi-user system internal core data folder \"${coreData999FolderInternalPath}\" and the files inside it, respectively (28). "
-		echo "无法向双开内部核心文件数据文件夹 \"${coreData999FolderInternalPath}\" 及其中的文件分别授予 755 和 644 权限（28）。"
+		echo "Please try to import the core data by the WX Repair Tool or by yourselve (28). "
+		echo "请尝试使用 WX Repair Tool 或手动导入核心文件数据（28）。"
 		echo ""
 		exit 28
+	fi
+	if chmod 755 "${coreData999FolderInternalPath}" && find "${coreData999FolderInternalPath}" -type d -exec chmod 755 {} \; && find "${coreData999FolderInternalPath}" -type f -exec chmod 644 {} \;
+	then
+		echo "Successfully granted 755 permissions to the multi-user system internal core data folder \"${coreData999FolderInternalPath}\". Successfully granted 755 and 644 permissions to its subfolders and subfiles, respectively. "
+		echo "成功向双开内部核心文件数据文件夹 \"${coreData999FolderInternalPath}\" 授予 755 权限，并对其子文件夹和子文件分别授予 755 和 644 权限。"
+		echo ""
+	else
+		echo "Failed to grant 755 permissions to the multi-user system internal core data folder \"${coreData999FolderInternalPath}\" or 755 and 644 permissionse to its subfolders and subfiles, respectively (29). "
+		echo "无法向双开内部核心文件数据文件夹 \"${coreData999FolderInternalPath}\" 授予 755 权限，或无法对其子文件夹和子文件分别授予 755 和 644 权限（29）。"
+		echo ""
+		exit 29
+	fi
+	if [[ -z "$(find "${coreData999FolderInternalPath}" -exec chown ${wechatUserId} {} \; -exec chgrp ${wechatUserId} {} \; 2>&1)" ]];
+	then
+		echo "Successfully changed the owner and the user group of \"${coreData999FolderInternalPath}\" and the files inside it to ${wechatUserId}. "
+		echo "成功将文件夹 \"${coreData999FolderInternalPath}\" 及其子文件的所有者和用户组更改为 ${wechatUserId}。"
+		echo ""
+	else
+		echo "Failed to change the owner and the user group of \"${coreData999FolderInternalPath}\" and the files inside it to ${wechatUserId} (30). "
+		echo "无法将文件夹 \"${coreData999FolderInternalPath}\" 及其子文件的所有者和用户组更改为 ${wechatUserId}（30）。"
+		echo ""
+		exit 30
 	fi
 else
 	echo "The parent directory of the multi-user system internal core data folder \"${coreData999FolderPath}\" does not exist, skipping. "
@@ -220,11 +244,11 @@ else
 	echo ""
 fi
 
-# FKZ_WX_DATA (3X) #
+# FKZ_WX_DATA (31--36) #
 fkzWxDataFolderInternalPath="${fkzWxDataFolderPath}"
 if [[ -d "${fkzWxDataFolderPath}" ]];
 then
-	echo "The parent directory of the internal FKZ_WX_DATA folder \"${fkzWxDataFolderPath}\" exists.  "
+	echo "The parent directory of the internal FKZ_WX_DATA folder \"${fkzWxDataFolderPath}\" exists. "
 	echo "内部 FKZ_WX_DATA 文件夹的父目录 \"${fkzWxDataFolderPath}\" 存在。"
 	echo ""
 	if [[ -f "${fkzWxDataFilePath}" ]];
@@ -286,15 +310,25 @@ then
 			echo ""
 			exit 34
 		fi
-		cp -r "${fkzWxDataDownloadFolderPath}"/* "${fkzWxDataFolderInternalPath}/"
-		if [[ $? -eq ${EXIT_SUCCESS} ]];
+		flag=${EXIT_SUCCESS}
+		for filePath in $(find "${fkzWxDataDownloadFolderPath}" -type f)
+		do
+			fileName="$(basename "${filePath}")"
+			targetFilePath="${fkzWxDataFolderInternalPath}/${fileName}"
+			cp "${filePath}" "${targetFilePath}" && chmod 660 "${targetFilePath}" && chown ${wechatUserId} "${targetFilePath}" && chgrp ${wechatUserId} "${targetFilePath}"
+			if [[ $? -ne ${EXIT_SUCCESS} || ! -f "${targetFilePath}" ]];
+			then
+				flag=${EXIT_FAILURE}
+			fi
+		done
+		if [[ ${flag} -eq ${EXIT_SUCCESS} ]];
 		then
-			echo "Successfully copied the decompressed FKZ_WX_DATA folder \"${fkzWxDataDownloadFolderPath}\" to \"${fkzWxDataFolderInternalPath}\". "
-			echo "成功将解压后的 FKZ_WX_DATA 文件夹 \"${fkzWxDataDownloadFolderPath}\" 复制到 \"${fkzWxDataFolderInternalPath}\"。"
+			echo "Successfully copied the decompressed FKZ_WX_DATA \"${fkzWxDataDownloadFolderPath}\" to \"${fkzWxDataFolderInternalPath}\", with permissions 660, owner ${wechatUserId}, and user group ${wechatUserId}. "
+			echo "成功将解压后的 FKZ_WX_DATA 文件夹中的内容 \"${fkzWxDataDownloadFolderPath}\" 复制到 \"${fkzWxDataFolderInternalPath}\"，并将权限、所有者、用户组分别设置为 660、${wechatUserId} 和 ${wechatUserId}。"
 			echo ""
 		else
-			echo "Failed to copy the decompressed FKZ_WX_DATA folder \"${fkzWxDataDownloadFolderPath}\" to \"${fkzWxDataFolderInternalPath}\". "
-			echo "无法将解压后的 FKZ_WX_DATA 文件夹 \"${fkzWxDataDownloadFolderPath}\" 复制到 \"${fkzWxDataFolderInternalPath}\"。"
+			echo "Failed to copy the decompressed FKZ_WX_DATA \"${fkzWxDataDownloadFolderPath}\" to \"${fkzWxDataFolderInternalPath}\", with permissions 660, owner ${wechatUserId}, and user group ${wechatUserId}. "
+			echo "无法将解压后的 FKZ_WX_DATA 文件夹中的内容 \"${fkzWxDataDownloadFolderPath}\" 复制到 \"${fkzWxDataFolderInternalPath}\"，并将权限、所有者、用户组分别设置为 660、${wechatUserId} 和 ${wechatUserId}。"
 			echo ""
 			echo "Please try to import the FKZ_WX_DATA by the WX Repair Tool or by yourselve (35). "
 			echo "请尝试使用 WX Repair Tool 或手动导入 FKZ_WX_DATA（35）。"
