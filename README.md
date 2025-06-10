@@ -75,6 +75,18 @@
 
 在安卓设备上审计后使用 root 权限本地执行，该脚本将基于本存储库自动向安卓设备本地导入微 X 模块或 X 模块核心文件和 FKZ_WX_DATA。
 
+## 常见异常处理
+
+此处提供一些 WX Repair Tool 中常出现的异常的处理方式。
+
+### hookFail 可疑
+
+该异常往往伴随核心文件数据文件数不正确或版本适配错误的异常出现，导入同时适配于所使用的微信和微 X 模块版本的核心文件数据即可处理该异常。
+
+### verifier6_time 或 verifier6 异常
+
+该异常通常出现于使用具有 root 权限的 MT 管理器导入 FKZ_WX_DATA 后，将导入的 FKZ_WX_DATA 的所有者和用户组均设置为微信应用即可解决该异常。
+
 ## 致谢
 
 - [https://github.com/fkzhang/WechatUnrecalled](https://github.com/fkzhang/WechatUnrecalled)
@@ -166,6 +178,18 @@ That is, both of the following directories should exist and should not be empty 
 ## autoImport.sh
 
 By executing it locally with root privileges on your Android device after checking it, this script will automatically import the core data and FKZ_WX_DATA files for the WechatXposed or the X plugin. 
+
+## Exceptions
+
+Here are some common exception handling methods in the WX Repair Tool.
+
+### hookFail suspicious
+
+This exception often occurs due to an incorrect number of core data files or version adaptation errors. Importing core data adapted to both the WeChat and WechatXposed versions can solve this exception. 
+
+### verifier6_time or verifier6 exception
+
+This exception usually occurs after importing FKZ_WX_DATA using MT Manager with root permissions. Setting both the owner and user group of the imported FKZ_WX_DATA to the WeChat application can solve this exception. 
 
 ## Acknowledgement
 
