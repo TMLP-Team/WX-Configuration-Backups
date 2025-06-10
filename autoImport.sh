@@ -8,6 +8,7 @@ readonly wechatPackageName="com.tencent.mm"
 readonly wechatUI=".ui.LauncherUI"
 readonly wxPackageName="com.fkzhang.wechatxposed"
 readonly xPackageName="cn.android.x"
+readonly wxRepairToolPackageName="wx.repair.tool"
 readonly coreData="%E6%A0%B8%E5%BF%83%E6%96%87%E4%BB%B6"
 readonly fkzWxData="FKZ_WX_DATA"
 readonly coreData0FolderPath="/data/user/0/${wechatPackageName}/files"
@@ -56,21 +57,38 @@ wechatVersionPlain="${wechatVersionName} (${wechatVersionCode})"
 wechatVersionData="${wechatVersionName}%20(${wechatVersionCode})"
 wxVersionName="$(dumpsys package ${wxPackageName} | grep versionName | cut -d '=' -f2)"
 xVersionName="$(dumpsys package ${xPackageName} | grep versionName | cut -d '=' -f2)"
+wxRepairToolVersionName="$(dumpsys package ${wxRepairToolPackageName} | grep versionName | cut -d '=' -f2)"
+wxRepairToolVersionCode="$(dumpsys package ${wxRepairToolPackageName} | grep versionCode | cut -d '=' -f2 | cut -d ' ' -f1)"
 if [[ "${wxVersionName}" == 2.* ]];
 then
-	wxXVersionCoreData="wx6_${wxVersionName}"
-	wxXVersionFkzWxData="x7_${wxVersionName}"
+	if [[ "${xVersionName}" == "3.0" ]];
+	then
+		echo "Detecting conflicts, please use either WechatXposed or X (12). "
+		echo "检测到冲突，请仅使用微 X 模块或 X 模块中的一个（12）。"
+		echo ""
+		exit 12
+	else
+		wxXVersionCoreData="wx6_${wxVersionName}"
+		wxXVersionFkzWxData="wx6_v${wxVersionName}"
+	fi
 elif [[ "${xVersionName}" == "3.0" ]];
 then
-	wxXVersionCoreData="x7_v${xVersionName}"
+	wxXVersionCoreData="x7_${xVersionName}"
 	wxXVersionFkzWxData="x7_v${xVersionName}"
 else
-	echo "This script will exit soon due to the unknown Wechatxposed version (12). "
-	echo "由于无法获取微 X 模块的版本，本脚本即将退出（12）。"
-	exit 12
+	echo "This script will exit soon due to the unknown Wechatxposed version (13). "
+	echo "由于无法获取微 X 模块的版本，本脚本即将退出（13）。"
+	exit 13
 fi
-echo "The current versions of the WeChat and the Wechatxposed are ${wechatVersionPlain} and ${wxVersionName}, respectively. "
-echo "当前微信和微 X 模块的版本分别为 ${wechatVersionPlain} 和 ${wxVersionName}。"
+if [[ -z "${wxRepairToolVersionName}" || ${wxRepairToolVersionCode} -lt 2 ]];
+then
+	echo "The WX Repair Tool is not installed or the version is lower than 2. Please install the up-to-date WX Repair Tool (14) before using this script. "
+	echo "WX Repair Tool 未安装或版本低于 2，请安装最新版 WX Repair Tool 后再使用脚本（14）。"
+	echo ""
+	exit 14
+fi
+echo "The current versions of the WeChat and the WechatXposed are ${wechatVersionPlain}, ${wxVersionName}, and ${wxRepairToolVersionName}, respectively. "
+echo "当前微信、微 X 模块和 WX Repair Tool 的版本分别为 ${wechatVersionPlain}、${wxVersionName} 和 ${wxRepairToolVersionName}。"
 echo ""
 
 # Core Data (2X) #
@@ -122,7 +140,7 @@ else
 	echo "Failed to decompress the downloaded core data file \"${coreDataDownloadFilePath}\" to \"${coreDataDownloadFolderPath}\". "
 	echo "无法将下载好的核心文件数据文件 \"${coreDataDownloadFilePath}\" 解压到 \"${coreDataDownloadFolderPath}\"。"
 	echo ""
-	echo "Please try to import the data by the WX Repair Tool or by yourselve (24). "
+	echo "Please try to import the core data by the WX Repair Tool or by yourselve (24). "
 	echo "请尝试使用 WX Repair Tool 或手动导入核心文件数据（24）。"
 	echo ""
 	exit 24
@@ -203,7 +221,7 @@ else
 fi
 
 # FKZ_WX_DATA (3X) #
-fkzWxDataFolderInternalPath="${fkzWxDataFolderPath}/${wxXVersionFkzWxData}"
+fkzWxDataFolderInternalPath="${fkzWxDataFolderPath}"
 if [[ -d "${fkzWxDataFolderPath}" ]];
 then
 	echo "The parent directory of the internal FKZ_WX_DATA folder \"${fkzWxDataFolderPath}\" exists.  "
@@ -250,7 +268,25 @@ then
 			echo "对于网络原因，如果您在中国大陆，请尝试科学上网，或手动打开存储库的主页进行检查；对于没有适配文件，请尝试使用 8.0.48 版本的国内版微信和 2.44 版本的微 X 模块（33）。"
 			exit 33
 		fi
-		cp -r "${fkzWxDataDownloadFolderPath}/*" "${fkzWxDataFolderInternalPath}/"
+		echo "Attempting to decompress the downloaded FKZ_WX_DATA file \"${fkzWxDataDownloadFilePath}\" to \"${fkzWxDataDownloadFolderPath}\", please wait. "
+		echo "正在尝试将下载好的 FKZ_WX_DATA 文件 \"${fkzWxDataDownloadFilePath}\" 解压到 \"${fkzWxDataDownloadFolderPath}\"，请耐心等待。"
+		echo ""
+		rm -rf "${fkzWxDataDownloadFolderPath}" && unzip "${fkzWxDataDownloadFilePath}" -d "${fkzWxDataDownloadFolderPath}"
+		if [[ $? -eq ${EXIT_SUCCESS} && -d "${fkzWxDataDownloadFolderPath}" ]];
+		then
+			echo "Successfully decompressed the downloaded FKZ_WX_DATA file \"${fkzWxDataDownloadFilePath}\" to \"${fkzWxDataDownloadFolderPath}\". "
+			echo "成功将下载好的 FKZ_WX_DATA 文件 \"${fkzWxDataDownloadFilePath}\" 解压到 \"${fkzWxDataDownloadFolderPath}\"。"
+			echo ""
+		else
+			echo "Failed to decompress the downloaded FKZ_WX_DATA file \"${fkzWxDataDownloadFilePath}\" to \"${fkzWxDataDownloadFolderPath}\". "
+			echo "无法将下载好的 FKZ_WX_DATA 文件 \"${fkzWxDataDownloadFilePath}\" 解压到 \"${fkzWxDataDownloadFolderPath}\"。"
+			echo ""
+			echo "Please try to import the FKZ_WX_DATA by the WX Repair Tool or by yourselve (34). "
+			echo "请尝试使用 WX Repair Tool 或手动导入 FKZ_WX_DATA（34）。"
+			echo ""
+			exit 34
+		fi
+		cp -r "${fkzWxDataDownloadFolderPath}"/* "${fkzWxDataFolderInternalPath}/"
 		if [[ $? -eq ${EXIT_SUCCESS} ]];
 		then
 			echo "Successfully copied the decompressed FKZ_WX_DATA folder \"${fkzWxDataDownloadFolderPath}\" to \"${fkzWxDataFolderInternalPath}\". "
@@ -260,10 +296,10 @@ then
 			echo "Failed to copy the decompressed FKZ_WX_DATA folder \"${fkzWxDataDownloadFolderPath}\" to \"${fkzWxDataFolderInternalPath}\". "
 			echo "无法将解压后的 FKZ_WX_DATA 文件夹 \"${fkzWxDataDownloadFolderPath}\" 复制到 \"${fkzWxDataFolderInternalPath}\"。"
 			echo ""
-			echo "Please try to import the FKZ_WX_DATA by the WX Repair Tool or by yourselve (34). "
-			echo "请尝试使用 WX Repair Tool 或手动导入 FKZ_WX_DATA（34）。"
+			echo "Please try to import the FKZ_WX_DATA by the WX Repair Tool or by yourselve (35). "
+			echo "请尝试使用 WX Repair Tool 或手动导入 FKZ_WX_DATA（35）。"
 			echo ""
-			exit 34
+			exit 35
 		fi
 	fi
 else
