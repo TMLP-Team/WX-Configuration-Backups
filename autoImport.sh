@@ -56,9 +56,9 @@ else
 fi
 
 # Versions (11--14) #
-wechatVersionName="$(dumpsys package ${wechatPackageName} | grep versionName | cut -d '=' -f2)"
+wechatVersionName="$(dumpsys package ${wechatPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
 wechatVersionCode="$(dumpsys package ${wechatPackageName} | grep versionCode | cut -d '=' -f2 | cut -d ' ' -f1)"
-wechatUserId="$(dumpsys package ${wechatPackageName} | grep userId | cut -d '=' -f2)"
+wechatUserId="$(dumpsys package ${wechatPackageName} | grep userId | cut -d '=' -f2 | cut -d ' ' -f1)"
 if [[ -z "${wechatVersionName}" || -z "${wechatVersionCode}" ]];
 then
 	echo "This script will exit soon due to the unknown WeChat version (11). "
@@ -71,15 +71,15 @@ then
 fi
 wechatVersionPlain="${wechatVersionName} (${wechatVersionCode})"
 wechatVersionData="${wechatVersionName}%20(${wechatVersionCode})"
-wxVersionName="$(dumpsys package ${wxPackageName} | grep versionName | cut -d '=' -f2)"
-xVersionName="$(dumpsys package ${xPackageName} | grep versionName | cut -d '=' -f2)"
-wxRepairToolVersionName="$(dumpsys package ${wxRepairToolPackageName} | grep versionName | cut -d '=' -f2)"
+wxVersionName="$(dumpsys package ${wxPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
+xVersionName="$(dumpsys package ${xPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
+wxRepairToolVersionName="$(dumpsys package ${wxRepairToolPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
 wxRepairToolVersionCode="$(dumpsys package ${wxRepairToolPackageName} | grep versionCode | cut -d '=' -f2 | cut -d ' ' -f1)"
 if [[ "${wxVersionName}" == 2.* ]];
 then
 	if [[ "${xVersionName}" == "3.0" ]];
 	then
-		echo "Detecting conflicts, please use either WechatXposed or X (12). "
+		echo "Conflicts detected, please use either WechatXposed or X (12). "
 		echo "检测到冲突，请仅使用微 X 模块或 X 模块中的一个（12）。"
 		echo ""
 		exit 12
