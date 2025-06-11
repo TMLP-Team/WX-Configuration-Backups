@@ -260,15 +260,13 @@ fi
 
 # FKZ_WX_DATA (31--36) #
 fkzWxDataFolderInternalPath="${fkzWxDataFolderPath}"
-if [[ -d "${fkzWxDataFolderPath}" ]];
+mkdir -p "${fkzWxDataFolderPath}" && chmod 755 "${fkzWxDataFolderPath}" && chown ${wechatUserId} "${fkzWxDataFolderPath}" && chgrp ${wechatUserId} "${fkzWxDataFolderPath}"
+if [[ $? -eq ${EXIT_SUCCESS} && -d "${fkzWxDataFolderPath}" ]];
 then
-	echo "The parent directory of the internal FKZ_WX_DATA folder \"${fkzWxDataFolderPath}\" exists. "
-	echo "内部 FKZ_WX_DATA 文件夹的父目录 \"${fkzWxDataFolderPath}\" 存在。"
-	echo ""
 	if [[ -f "${fkzWxDataFilePath}" ]];
 	then
-		echo "The internal FKZ_WX_DATA file \"${fkzWxDataFilePath}\" exists, skipping. Please remove it if you want a new one from the repository. "
-		echo "内部 FKZ_WX_DATA 文件 \"${fkzWxDataFilePath}\" 存在，跳过复制。如有需要，请删除它，以获取仓库中的 FKZ_WX_DATA 文件。"
+		echo "The internal FKZ_WX_DATA file \"${fkzWxDataFilePath}\" exists, skipping. Please remove it manually if you want a new one from the repository. "
+		echo "内部 FKZ_WX_DATA 文件 \"${fkzWxDataFilePath}\" 存在，跳过复制。如有需要，请手动删除它，以获取仓库中的 FKZ_WX_DATA 文件。"
 		echo ""
 	else
 		fkzWxDataDownloadLink="${repositoryContentLink}/${fkzWxData}/${wechatVersionData}/${wxXVersionFkzWxData}.zip"
@@ -351,9 +349,10 @@ then
 		fi
 	fi
 else
-	echo "The parent directory of the internal FKZ_WX_DATA folder \"${fkzWxDataFolderPath}\" does not exist, skipping. "
-	echo "内部 FKZ_WX_DATA 文件夹的父目录 \"${fkzWxDataFolderPath}\" 不存在，跳过复制。"
+	echo "The internal directory for FKZ_WX_DATA to be imported to \"${fkzWxDataFolderPath}\" did not exist, and it failed to be created (36). "
+	echo "要导入 FKZ_WX_DATA 的内部目录 \"${fkzWxDataFolderPath}\" 不存在且无法创建（36）。"
 	echo ""
+	exit 36
 fi
 
 # Restart #
