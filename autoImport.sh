@@ -25,24 +25,32 @@ else
 	readonly downloadFolderPath="/sdcard/Download"
 fi
 
-# Welcome (1--2) #
+# Welcome (1--3) #
 echo "Welcome to the \`\`${scriptName}\`\`. Please check the script before you execute it. "
 echo "欢迎使用 \`\`${scriptName}\`\`，请审计该脚本后再执行该脚本。"
 echo ""
 echo "Please kindly submit core and FKZ_WX_DATA configuration files to ${repositoryHomePage} if you have. Thank you. "
 echo "如您拥有核心文件或 FKZ_WX_DATA 数据的存档，请向 ${repositoryHomePage} 提交拉取请求（Pull Request，简称 PR）。感谢！"
 echo ""
-mkdir -p "${downloadFolderPath}"
-if [[ $? -eq ${EXIT_SUCCESS} && -d "${downloadFolderPath}" ]];
+if [[ $(id -u) -eq 0 ]];
 then
-	echo "The local folder for download \"${downloadFolderPath}\" is ready. "
-	echo "本地用于下载的文件夹 \"${downloadFolderPath}\" 已就绪。"
-	echo ""
+	mkdir -p "${downloadFolderPath}"
+	if [[ $? -eq ${EXIT_SUCCESS} && -d "${downloadFolderPath}" ]];
+	then
+		echo "The local folder for download \"${downloadFolderPath}\" is ready. "
+		echo "本地用于下载的文件夹 \"${downloadFolderPath}\" 已就绪。"
+		echo ""
+	else
+		echo "This script will exit soon since it failed to handle the local folder for download \"${downloadFolderPath}\" (2). "
+		echo "由于无法就绪本地用于下载的文件夹 \"${downloadFolderPath}\"，本脚本即将退出（2）。"
+		echo ""
+		exit 2
+	fi
 else
-	echo "This script will exit soon since it failed to handle the local folder for download \"${downloadFolderPath}\" (2). "
-	echo "由于无法就绪本地用于下载的文件夹 \"${downloadFolderPath}\"，本脚本即将退出（2）。"
+	echo "This script was not executed with root permissions. Please execute it as root. If your device is not rooted, please visit the above homepage or other repositories to find the appropriate configuration data for download and manually import (3). "
+	echo "脚本没有被授予 root 权限，请使用 root 身份执行；如设备未 root，请自行访问上述主页或其它仓库寻找适配的配置数据进行下载并手动导入（3）。"
 	echo ""
-	exit 2
+	exit 3
 fi
 
 # Versions (11--14) #
