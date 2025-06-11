@@ -17,13 +17,15 @@ readonly coreData999FolderPath="/data/user/999/${wechatPackageName}/files"
 readonly fkzWxDataFolderPath="/data/data/${wechatPackageName}/databases"
 readonly fkzWxDataFileName="FKZ_WX_DATA"
 readonly fkzWxDataFilePath="${fkzWxDataFolderPath}/${fkzWxDataFileName}"
-readonly timeToSleep=3
 if [[ -n "${EXTERNAL_STORAGE}" ]];
 then
-	readonly downloadFolderPath="${EXTERNAL_STORAGE}/Download"
+	readonly deviceDownloadFolderPath="${EXTERNAL_STORAGE}/Download"
 else
-	readonly downloadFolderPath="/sdcard/Download"
+	readonly deviceDownloadFolderPath="/sdcard/Download"
 fi
+readonly wxConfigurationFolderName=".wxConfigurations"
+readonly downloadFolderPath="${deviceDownloadFolderPath}/${wxConfigurationFolderName}"
+readonly timeToSleep=3
 
 # Welcome (1--3) #
 echo "Welcome to the \`\`${scriptName}\`\`. Please check the script before you execute it. "
@@ -48,7 +50,7 @@ then
 	fi
 else
 	echo "This script was not executed with root permissions. Please execute it as root. If your device is not rooted, please visit the above homepage or other repositories to find the appropriate configuration data for download and manually import (3). "
-	echo "脚本没有被授予 root 权限，请使用 root 身份执行；如设备未 root，请自行访问上述主页或其它仓库寻找适配的配置数据进行下载并手动导入（3）。"
+	echo "本脚本没有被授予 root 权限，请使用 root 身份执行；如设备未 root，请自行访问上述主页或其它仓库寻找适配的配置数据进行下载并手动导入（3）。"
 	echo ""
 	exit 3
 fi
