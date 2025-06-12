@@ -182,7 +182,7 @@ then
 		echo ""
 		exit 25
 	fi
-	if chmod 755 "${coreData0FolderInternalPath}" && find "${coreData0FolderInternalPath}" -type d -exec chmod 755 {} \; && find "${coreData0FolderInternalPath}" -type f -exec chmod 644 {} \;
+	if [[ -z "$(find "${coreData0FolderInternalPath}" -type d -exec chmod 755 {} \; 2>&1)" && -z "$(find "${coreData0FolderInternalPath}" -type f -exec chmod 644 {} \; 2>&1)" ]];
 	then
 		echo "Successfully granted 755 permissions to the internal core data folder \"${coreData0FolderInternalPath}\". Successfully granted 755 and 644 permissions to its subfolders and subfiles, respectively. "
 		echo "成功向内部核心文件数据文件夹 \"${coreData0FolderInternalPath}\" 授予 755 权限，并对其子文件夹和子文件分别授予 755 和 644 权限。"
@@ -230,7 +230,7 @@ then
 		echo ""
 		exit 28
 	fi
-	if chmod 755 "${coreData999FolderInternalPath}" && find "${coreData999FolderInternalPath}" -type d -exec chmod 755 {} \; && find "${coreData999FolderInternalPath}" -type f -exec chmod 644 {} \;
+	if [[ -z "$(find "${coreData999FolderInternalPath}" -type d -exec chmod 755 {} \; 2>&1)" && -z "$(find "${coreData999FolderInternalPath}" -type f -exec chmod 644 {} \; 2>&1)" ]];
 	then
 		echo "Successfully granted 755 permissions to the multi-user system internal core data folder \"${coreData999FolderInternalPath}\". Successfully granted 755 and 644 permissions to its subfolders and subfiles, respectively. "
 		echo "成功向双开内部核心文件数据文件夹 \"${coreData999FolderInternalPath}\" 授予 755 权限，并对其子文件夹和子文件分别授予 755 和 644 权限。"
@@ -323,7 +323,7 @@ then
 			exit 34
 		fi
 		flag=${EXIT_SUCCESS}
-		for filePath in $(find "${fkzWxDataDownloadFolderPath}" -type f)
+		for filePath in $(find "${fkzWxDataDownloadFolderPath}" -type f -name "FKZ_WX_*")
 		do
 			fileName="$(basename "${filePath}")"
 			targetFilePath="${fkzWxDataFolderInternalPath}/${fileName}"
@@ -335,8 +335,10 @@ then
 		done
 		if [[ ${flag} -eq ${EXIT_SUCCESS} ]];
 		then
-			echo "Successfully copied the decompressed FKZ_WX_DATA \"${fkzWxDataDownloadFolderPath}\" to \"${fkzWxDataFolderInternalPath}\", with permissions 660, owner ${wechatUserId}, and user group ${wechatUserId}. "
-			echo "成功将解压后的 FKZ_WX_DATA 文件夹中的内容 \"${fkzWxDataDownloadFolderPath}\" 复制到 \"${fkzWxDataFolderInternalPath}\"，并将权限、所有者、用户组分别设置为 660、${wechatUserId} 和 ${wechatUserId}。"
+			echo -n "Successfully copied the files whose names start with \`\`FKZ_WX_\`\` in the decompressed FKZ_WX_DATA \"${fkzWxDataDownloadFolderPath}\" to \"${fkzWxDataFolderInternalPath}\", "
+			echo "with permissions 660, owner ${wechatUserId}, and user group ${wechatUserId}. "
+			echo -n "成功将解压后的 FKZ_WX_DATA 文件夹 \"${fkzWxDataDownloadFolderPath}\" 中以 \`\`FKZ_WX_\`\` 开头的文件复制到 \"${fkzWxDataFolderInternalPath}\"，"
+			echo "并将权限、所有者、用户组分别设置为 660、${wechatUserId} 和 ${wechatUserId}。"
 			echo ""
 		else
 			echo "Failed to copy the decompressed FKZ_WX_DATA \"${fkzWxDataDownloadFolderPath}\" to \"${fkzWxDataFolderInternalPath}\", with permissions 660, owner ${wechatUserId}, and user group ${wechatUserId}. "
