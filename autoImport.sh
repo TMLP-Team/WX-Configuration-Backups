@@ -70,7 +70,7 @@ then
 	wechatVersionName="Play ${wechatVersionName}"
 fi
 wechatVersionPlain="${wechatVersionName} (${wechatVersionCode})"
-wechatVersionData="${wechatVersionName}%20(${wechatVersionCode})"
+wechatVersionData="$(echo "${wechatVersionPlain}" | sed 's/ /%20/g')"
 wxVersionName="$(dumpsys package ${wxPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
 xVersionName="$(dumpsys package ${xPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
 wxRepairToolVersionName="$(dumpsys package ${wxRepairToolPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
@@ -84,11 +84,13 @@ then
 		echo ""
 		exit 12
 	else
+		wxXVersionName="${wxVersionName}"
 		wxXVersionCoreData="wx6_${wxVersionName}"
 		wxXVersionFkzWxData="wx6_v${wxVersionName}"
 	fi
 elif [[ "${xVersionName}" == "3.0" ]];
 then
+	wxXVersionName="${xVersionName}"
 	wxXVersionCoreData="x7_${xVersionName}"
 	wxXVersionFkzWxData="x7_v${xVersionName}"
 else
@@ -103,8 +105,8 @@ then
 	echo ""
 	exit 14
 fi
-echo "The current versions of the WeChat and the WechatXposed are ${wechatVersionPlain}, ${wxVersionName}, and ${wxRepairToolVersionName}, respectively. "
-echo "当前微信、微 X 模块和 WX Repair Tool 的版本分别为 ${wechatVersionPlain}、${wxVersionName} 和 ${wxRepairToolVersionName}。"
+echo "The current versions of the WeChat and the WechatXposed are ${wechatVersionPlain}, ${wxXVersionName}, and ${wxRepairToolVersionName}, respectively. "
+echo "当前微信、微 X 模块和 WX Repair Tool 的版本分别为 ${wechatVersionPlain}、${wxXVersionName} 和 ${wxRepairToolVersionName}。"
 echo ""
 
 # Core Data (2X) #
