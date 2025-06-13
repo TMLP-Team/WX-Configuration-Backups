@@ -55,15 +55,23 @@ else
 	exit 3
 fi
 
-# Versions (11--14) #
-wechatVersionName="$(dumpsys package ${wechatPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
-wechatVersionCode="$(dumpsys package ${wechatPackageName} | grep versionCode | cut -d '=' -f2 | cut -d ' ' -f1)"
-wechatUserId="$(dumpsys package ${wechatPackageName} | grep userId | cut -d '=' -f2 | cut -d ' ' -f1)"
+# Versions (11--15) #
+wechatVersionName="$(dumpsys package ${wechatPackageName} | grep "versionName" | cut -d '=' -f2 | cut -d ' ' -f1)"
+wechatVersionCode="$(dumpsys package ${wechatPackageName} | grep "versionCode" | cut -d '=' -f2 | cut -d ' ' -f1)"
 if [[ -z "${wechatVersionName}" || -z "${wechatVersionCode}" ]];
 then
 	echo "This script will exit soon due to the unknown WeChat version (11). "
 	echo "由于无法获取微信版本，本脚本即将退出（11）。"
+	echo ""
 	exit 11
+fi
+wechatUserId="$(dumpsys package ${wechatPackageName} | grep "userId" | cut -d '=' -f2 | cut -d ' ' -f1 | uniq)"
+if ! echo "${wechatUserId}" | grep -qE '^[0-9]+$';
+then
+	echo "Could not fetch the user ID of WeChat. This script will exit soon (12). "
+	echo "由于无法获取微信的用户 ID，本脚本即将退出（12）。"
+	echo ""
+	exit 12
 fi
 if [[ $(expr ${wechatVersionCode} % 20) -ne 0 ]];
 then
@@ -71,18 +79,16 @@ then
 fi
 wechatVersionPlain="${wechatVersionName} (${wechatVersionCode})"
 wechatVersionData="$(echo "${wechatVersionPlain}" | sed 's/ /%20/g')"
-wxVersionName="$(dumpsys package ${wxPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
-xVersionName="$(dumpsys package ${xPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
-wxRepairToolVersionName="$(dumpsys package ${wxRepairToolPackageName} | grep versionName | cut -d '=' -f2 | cut -d ' ' -f1)"
-wxRepairToolVersionCode="$(dumpsys package ${wxRepairToolPackageName} | grep versionCode | cut -d '=' -f2 | cut -d ' ' -f1)"
+wxVersionName="$(dumpsys package ${wxPackageName} | grep "versionName" | cut -d '=' -f2 | cut -d ' ' -f1)"
+xVersionName="$(dumpsys package ${xPackageName} | grep "versionName" | cut -d '=' -f2 | cut -d ' ' -f1)"
 if [[ "${wxVersionName}" == 2.* ]];
 then
 	if [[ "${xVersionName}" == "3.0" ]];
 	then
-		echo "Conflicts detected, please use either WechatXposed or X (12). "
-		echo "检测到冲突，请仅使用微 X 模块或 X 模块中的一个（12）。"
+		echo "Plugin conflicts detected, please use either WechatXposed or X (13). "
+		echo "检测到插件冲突，请仅使用微 X 模块或 X 模块中的一个（13）。"
 		echo ""
-		exit 12
+		exit 13
 	else
 		wxXVersionName="${wxVersionName}"
 		wxXVersionCoreData="wx6_${wxVersionName}"
@@ -94,16 +100,18 @@ then
 	wxXVersionCoreData="x7_${xVersionName}"
 	wxXVersionFkzWxData="x7_v${xVersionName}"
 else
-	echo "This script will exit soon due to the unknown Wechatxposed version (13). "
-	echo "由于无法获取微 X 模块的版本，本脚本即将退出（13）。"
-	exit 13
+	echo "This script will exit soon due to the unknown Wechatxposed version (14). "
+	echo "由于无法获取微 X 模块的版本，本脚本即将退出（14）。"
+	exit 14
 fi
+wxRepairToolVersionName="$(dumpsys package ${wxRepairToolPackageName} | grep "versionName" | cut -d '=' -f2 | cut -d ' ' -f1)"
+wxRepairToolVersionCode="$(dumpsys package ${wxRepairToolPackageName} | grep "versionCode" | cut -d '=' -f2 | cut -d ' ' -f1)"
 if [[ -z "${wxRepairToolVersionName}" || ${wxRepairToolVersionCode} -lt 2 ]];
 then
-	echo "The WX Repair Tool is not installed or the version is lower than 2. Please install the up-to-date WX Repair Tool (14) before using this script. "
-	echo "WX Repair Tool 未安装或版本低于 2，请安装最新版 WX Repair Tool 后再使用脚本（14）。"
+	echo "The WX Repair Tool is not installed or the version is lower than 2. Please install the up-to-date WX Repair Tool before using this script (15). "
+	echo "WX Repair Tool 未安装或版本低于 2，请安装最新版 WX Repair Tool 后再使用脚本（15）。"
 	echo ""
-	exit 14
+	exit 15
 fi
 echo "The current versions of the WeChat and the WechatXposed are ${wechatVersionPlain}, ${wxXVersionName}, and ${wxRepairToolVersionName}, respectively. "
 echo "当前微信、微 X 模块和 WX Repair Tool 的版本分别为 ${wechatVersionPlain}、${wxXVersionName} 和 ${wxRepairToolVersionName}。"
@@ -116,20 +124,26 @@ coreDataDownloadFolderPath="${downloadFolderPath}/${wxXVersionCoreData}"
 echo "Attempting to the fetch adapted core data \"${coreDataDownloadLink}\" to \"${downloadFolderPath}\", please wait. "
 echo "正在尝试将适配的核心文件数据 \"${coreDataDownloadLink}\" 下载到 \"${downloadFolderPath}\"，请耐心等待。"
 echo ""
-curl -s "${coreDataDownloadLink}" > "${coreDataDownloadFilePath}"
-returnCode=$?
+if wget 2>&1 | grep -q -F "inaccessible or not found";
+then
+	curl -s "${coreDataDownloadLink}" > "${coreDataDownloadFilePath}"
+	returnCode=$?
+else
+	wget -c "${coreDataDownloadLink}" -O "${coreDataDownloadFilePath}"
+	returnCode=$?
+fi
 if [[ ${returnCode} -eq ${EXIT_SUCCESS} && -e "${coreDataDownloadFilePath}" ]];
 then
-	if [[ "$(cat "${coreDataDownloadFilePath}")" == "Bad Request" ]];
+	if zipinfo "${coreDataDownloadFilePath}" > /dev/null 2>&1;
 	then
-		echo "Failed to download the fetch adapted core data \"${coreDataDownloadLink}\" to \"${downloadFolderPath}\" due to a bad request (21). "
-		echo "由于请求错误，无法将适配的核心文件数据 \"${coreDataDownloadLink}\" 下载到 \"${downloadFolderPath}\"（21）。"
+		echo "Successfully tested the fetched adapted core data \"${coreDataDownloadFilePath}\". "
+		echo "下载的适配核心文件数据 \"${coreDataDownloadFilePath}\" 测试通过。"
+		echo ""
+	else
+		echo "Failed to test the fetched adapted core data \"${coreDataDownloadFilePath}\" (21). "
+		echo "下载的适配核心文件数据 \"${coreDataDownloadFilePath}\" 测试不通过（21）。"
 		echo ""
 		exit 21
-	else
-		echo "Successfully downloaded the fetch adapted core data \"${coreDataDownloadLink}\" to \"${downloadFolderPath}\". "
-		echo "成功将适配的核心文件数据 \"${coreDataDownloadLink}\" 下载到 \"${downloadFolderPath}\"。"
-		echo ""
 	fi
 elif [[ ${returnCode} -eq ${EXIT_FAILURE} ]];
 then
@@ -277,20 +291,26 @@ then
 		echo "Attempting to the fetch adapted FKZ_WX_DATA \"${fkzWxDataDownloadLink}\" to \"${downloadFolderPath}\", please wait. "
 		echo "正在尝试将适配的 FKZ_WX_DATA \"${fkzWxDataDownloadLink}\" 下载到 \"${downloadFolderPath}\"，请耐心等待。"
 		echo ""
-		curl -s "${fkzWxDataDownloadLink}" > "${fkzWxDataDownloadFilePath}"
-		returnCode=$?
+		if wget 2>&1 | grep -q -F "inaccessible or not found";
+		then
+			curl -s "${fkzWxDataDownloadLink}" > "${fkzWxDataDownloadFilePath}"
+			returnCode=$?
+		else
+			wget -c "${fkzWxDataDownloadLink}" -O "${fkzWxDataDownloadFilePath}"
+			returnCode=$?
+		fi
 		if [[ ${returnCode} -eq ${EXIT_SUCCESS} && -e "${fkzWxDataDownloadFilePath}" ]];
 		then
-			if [[ "$(cat "${fkzWxDataDownloadFilePath}")" == "Bad Request" ]];
+			if zipinfo "${fkzWxDataDownloadFilePath}" > /dev/null 2>&1;
 			then
-				echo "Failed to download the fetch adapted FKZ_WX_DATA \"${fkzWxDataDownloadLink}\" to \"${downloadFolderPath}\" due to a bad request (31). "
-				echo "由于请求错误，无法将适配的 FKZ_WX_DATA \"${fkzWxDataDownloadLink}\" 下载到 \"${downloadFolderPath}\"（31）。"
+				echo "Successfully tested the fetched adapted FKZ_WX_DATA \"${fkzWxDataDownloadFilePath}\". "
+				echo "下载的适配 FKZ_WX_DATA \"${fkzWxDataDownloadFilePath}\" 测试通过。"
+				echo ""
+			else
+				echo "Failed to test the fetched adapted FKZ_WX_DATA \"${fkzWxDataDownloadFilePath}\" (31). "
+				echo "下载的适配 FKZ_WX_DATA \"${fkzWxDataDownloadFilePath}\" 测试不通过（31）。"
 				echo ""
 				exit 31
-			else
-				echo "Successfully downloaded the fetch adapted FKZ_WX_DATA \"${fkzWxDataDownloadLink}\" to \"${downloadFolderPath}\". "
-				echo "成功将适配的 FKZ_WX_DATA \"${fkzWxDataDownloadLink}\" 下载到 \"${downloadFolderPath}\"。"
-				echo ""
 			fi
 		elif [[ ${returnCode} -eq ${EXIT_FAILURE} ]];
 		then
