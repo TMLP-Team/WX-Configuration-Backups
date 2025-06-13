@@ -106,8 +106,9 @@
 - [https://github.com/fkzhang/WechatUnrecalled](https://github.com/fkzhang/WechatUnrecalled)
 - [https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed](https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed)
 - [https://github.com/Xposed-Modules-Repo/wx.repair.tool](https://github.com/Xposed-Modules-Repo/wx.repair.tool)
+- [@cuuemo](https://github.com/cuuemo)：``./核心文件/8.0.48 (2580)/wx6_2.44``
 - [@longli928](https://github.com/longli928)：``./核心文件/Play 8.0.48 (2588)/x7_3.0`` 和 ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
-- [@Y-sir](https://github.com/Y-sir)
+- [@Y-sir](https://github.com/Y-sir)：``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
 - [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
 - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
 - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
@@ -234,8 +235,9 @@ The license of this repository complies with the upstream license, which is open
 - [https://github.com/fkzhang/WechatUnrecalled](https://github.com/fkzhang/WechatUnrecalled)
 - [https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed](https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed)
 - [https://github.com/Xposed-Modules-Repo/wx.repair.tool](https://github.com/Xposed-Modules-Repo/wx.repair.tool)
+- [@cuuemo](https://github.com/cuuemo): ``./核心文件/8.0.48 (2580)/wx6_2.44``
 - [@longli928](https://github.com/longli928): ``./核心文件/Play 8.0.48 (2588)/x7_3.0`` and ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
-- [@Y-sir](https://github.com/Y-sir)
+- [@Y-sir](https://github.com/Y-sir): ``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
 - [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
 - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
 - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
