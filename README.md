@@ -116,16 +116,17 @@
     - 使用 ``printf`` 替换多余的 ``echo``
     - 添加用户协议
   - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
-    - ``./核心文件/8.0.24 (2100)/wx6_2.33`` 和 ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.33``
-    - ``./核心文件/8.0.24 (2100)/wx6_2.41`` 和 ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.41``
+    - ``./核心文件/8.0.24 (2100)/wx6_2.33`` 和 ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_v2.33``
+    - ``./核心文件/8.0.24 (2100)/wx6_2.41`` 和 ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_v2.41``
 - [@cuuemo](https://github.com/cuuemo)：``./核心文件/8.0.48 (2580)/wx6_2.44``
-- [@longli928](https://github.com/longli928)：``./核心文件/Play 8.0.48 (2588)/x7_3.0`` 和 ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
+- [@longli928](https://github.com/longli928)：``./核心文件/Play 8.0.48 (2588)/x7_3.0`` 和 ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_v3.0``
 - [@Y-sir](https://github.com/Y-sir)：``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
 - 来自 WX Repair Tool 官方 QQ 2 群的某匿名群友
-  - [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
   - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
-  - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
-  - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)
+    - ``./核心文件/8.0.49 (2600)/x7_3.0`` 和 ``./FKZ_WX_DATA/8.0.49 (2600)/x7_v3.0``
+    - ``./核心文件/8.0.42 (2460)/x7_3.0`` 和 ``./FKZ_WX_DATA/8.0.42 (2460)/x7_v3.0``
+  - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)：``./核心文件/Play 8.0.33 (2306)/wx6_2.44``
+  - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)：``./核心文件/Play 8.0.42 (2429)/x7_3.0`` 和 ``./FKZ_WX_DATA/Play 8.0.42 (2429)/x7_v3.0``
 
 ---
 
@@ -257,12 +258,13 @@ The license of this repository complies with the upstream license, which is open
     - Use ``printf`` instead of redundant ``echo``
     - Add the user agreement
   - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
-    - ``./核心文件/8.0.24 (2100)/wx6_2.33`` and ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.33``
-    - ``./核心文件/8.0.24 (2100)/wx6_2.41`` and ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.41``
-- [@longli928](https://github.com/longli928): ``./核心文件/Play 8.0.48 (2588)/x7_3.0`` and ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
+    - ``./核心文件/8.0.24 (2100)/wx6_2.33`` and ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_v2.33``
+    - ``./核心文件/8.0.24 (2100)/wx6_2.41`` and ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_v2.41``
+- [@longli928](https://github.com/longli928): ``./核心文件/Play 8.0.48 (2588)/x7_3.0`` and ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_v3.0``
 - [@Y-sir](https://github.com/Y-sir): ``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
 - An anonymous member from the Official QQ Group 2 of WX Repair Tool
-  - [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
   - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
-  - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
-  - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)
+    - ``./核心文件/8.0.49 (2600)/x7_3.0`` and ``./FKZ_WX_DATA/8.0.49 (2600)/x7_v3.0``
+    - ``./核心文件/8.0.42 (2460)/x7_3.0`` and ``./FKZ_WX_DATA/8.0.42 (2460)/x7_v3.0``
+  - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi): ``./核心文件/Play 8.0.33 (2306)/wx6_v2.44``
+  - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3): ``./核心文件/Play 8.0.42 (2429)/x7_3.0`` and ``./FKZ_WX_DATA/Play 8.0.42 (2429)/x7_v3.0``
