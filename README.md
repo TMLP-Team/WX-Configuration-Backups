@@ -108,14 +108,16 @@
 - [https://github.com/fkzhang/WechatUnrecalled](https://github.com/fkzhang/WechatUnrecalled)
 - [https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed](https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed)
 - [https://github.com/Xposed-Modules-Repo/wx.repair.tool](https://github.com/Xposed-Modules-Repo/wx.repair.tool)
-- [@bzggnveee](https://github.com/bzggnveee)：``./核心文件/8.0.24 (2100)/wx6_2.33``, ``./核心文件/8.0.24 (2100)/wx6_2.41``, ``./核心文件/8.0.24 (2100)/wx6_2.33``, and ``./核心文件/8.0.24 (2100)/wx6_2.41``
-  - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
+- [@bzggnveee](https://github.com/bzggnveee)
   - [Pull Request #10](https://github.com/TMLP-Team/WX-Configuration-Backups/pull/10)：更新 ``autoImport.sh``
     - 修复微信用户ID解析
     - 美化脚本
     - 优化英文表达
     - 使用 ``printf`` 替换多余的 ``echo``
     - 添加用户协议
+  - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
+    - ``./核心文件/8.0.24 (2100)/wx6_2.33`` 和 ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.33``
+    - ``./核心文件/8.0.24 (2100)/wx6_2.41`` 和 ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.41``
 - [@cuuemo](https://github.com/cuuemo)：``./核心文件/8.0.48 (2580)/wx6_2.44``
 - [@longli928](https://github.com/longli928)：``./核心文件/Play 8.0.48 (2588)/x7_3.0`` 和 ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
 - [@Y-sir](https://github.com/Y-sir)：``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
@@ -247,14 +249,16 @@ The license of this repository complies with the upstream license, which is open
 - [https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed](https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed)
 - [https://github.com/Xposed-Modules-Repo/wx.repair.tool](https://github.com/Xposed-Modules-Repo/wx.repair.tool)
 - [@cuuemo](https://github.com/cuuemo): ``./核心文件/8.0.48 (2580)/wx6_2.44``
-- [@bzggnveee](https://github.com/bzggnveee): ``./核心文件/8.0.24 (2100)/wx6_2.33``, ``./核心文件/8.0.24 (2100)/wx6_2.41``, ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.33``, and ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.41``
-  - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
+- [@bzggnveee](https://github.com/bzggnveee)
   - [Pull Request #10](https://github.com/TMLP-Team/WX-Configuration-Backups/pull/10): Update ``autoImport.sh``
     - Repair the parsing of WeChat user ID
     - Beautify the script
     - Optimize English expressions
     - Use ``printf`` instead of redundant ``echo``
     - Add the user agreement
+  - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
+    - ``./核心文件/8.0.24 (2100)/wx6_2.33`` and ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.33``
+    - ``./核心文件/8.0.24 (2100)/wx6_2.41`` and ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.41``
 - [@longli928](https://github.com/longli928): ``./核心文件/Play 8.0.48 (2588)/x7_3.0`` and ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
 - [@Y-sir](https://github.com/Y-sir): ``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
 - An anonymous member from the Official QQ Group 2 of WX Repair Tool
