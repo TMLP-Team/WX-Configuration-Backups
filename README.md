@@ -124,7 +124,9 @@
 - 来自 WX Repair Tool 官方 QQ 2 群的某匿名群友
   - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
     - ``./核心文件/8.0.49 (2600)/x7_3.0`` 和 ``./FKZ_WX_DATA/8.0.49 (2600)/x7_v3.0``
+    - ``./核心文件/8.0.47 (2560)/wx6_2.44`` 和 ``./FKZ_WX_DATA/8.0.47 (2560)/wx6_v2.44``
     - ``./核心文件/8.0.42 (2460)/x7_3.0`` 和 ``./FKZ_WX_DATA/8.0.42 (2460)/x7_v3.0``
+    - ``./核心文件/Play 8.0.30 (2244)/wx6_2.39`` 和 ``./FKZ_WX_DATA/Play 8.0.30 (2244)/wx6_v2.39``
   - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)：``./核心文件/Play 8.0.33 (2306)/wx6_2.44``
   - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)：``./核心文件/Play 8.0.42 (2429)/x7_3.0`` 和 ``./FKZ_WX_DATA/Play 8.0.42 (2429)/x7_v3.0``
 
@@ -265,6 +267,8 @@ The license of this repository complies with the upstream license, which is open
 - An anonymous member from the Official QQ Group 2 of WX Repair Tool
   - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
     - ``./核心文件/8.0.49 (2600)/x7_3.0`` and ``./FKZ_WX_DATA/8.0.49 (2600)/x7_v3.0``
+    - ``./核心文件/8.0.47 (2560)/wx6_2.44`` and ``./FKZ_WX_DATA/8.0.47 (2560)/wx6_v2.44``
     - ``./核心文件/8.0.42 (2460)/x7_3.0`` and ``./FKZ_WX_DATA/8.0.42 (2460)/x7_v3.0``
+    - ``./核心文件/Play 8.0.30 (2244)/wx6_2.39`` and ``./FKZ_WX_DATA/Play 8.0.30 (2244)/wx6_v2.39``
   - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi): ``./核心文件/Play 8.0.33 (2306)/wx6_v2.44``
   - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3): ``./核心文件/Play 8.0.42 (2429)/x7_3.0`` and ``./FKZ_WX_DATA/Play 8.0.42 (2429)/x7_v3.0``
