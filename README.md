@@ -115,6 +115,7 @@
 - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)
 - [@bzggnveee](https://github.com/bzggnveee)：``./核心文件/8.0.24 (2100)/wx6_2.33``, ``./核心文件/8.0.24 (2100)/wx6_2.41``, ``./核心文件/8.0.24 (2100)/wx6_2.33``, and ``./核心文件/8.0.24 (2100)/wx6_2.41``
   - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
+  - [Pull Request #10](https://github.com/TMLP-Team/WX-Configuration-Backups/pull/10)：更新 ``autoImport.sh``
 
 ---
 
@@ -244,3 +245,4 @@ The license of this repository complies with the upstream license, which is open
 - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)
 - [@bzggnveee](https://github.com/bzggnveee): ``./核心文件/8.0.24 (2100)/wx6_2.33``, ``./核心文件/8.0.24 (2100)/wx6_2.41``, ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.33``, and ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.41``
   - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
+  - [Pull Request #10](https://github.com/TMLP-Team/WX-Configuration-Backups/pull/10): Update ``autoImport.sh``
