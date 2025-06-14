@@ -85,6 +85,8 @@
 
 在安卓设备上审计后使用 root 权限本地执行，该脚本将基于本存储库自动向安卓设备本地导入微 X 模块核心文件和 FKZ_WX_DATA。
 
+该脚本支持在 Termux 或 MT 管理器中执行，在 MT 管理器中执行时请使用系统环境。
+
 ## 常见异常处理
 
 此处提供一些 WX Repair Tool 中常出现的异常的处理方式。
@@ -106,16 +108,22 @@
 - [https://github.com/fkzhang/WechatUnrecalled](https://github.com/fkzhang/WechatUnrecalled)
 - [https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed](https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed)
 - [https://github.com/Xposed-Modules-Repo/wx.repair.tool](https://github.com/Xposed-Modules-Repo/wx.repair.tool)
-- [@cuuemo](https://github.com/cuuemo)：``./核心文件/8.0.48 (2580)/wx6_2.44``
-- [@longli928](https://github.com/longli928)：``./核心文件/Play 8.0.48 (2588)/x7_3.0`` 和 ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
-- [@Y-sir](https://github.com/Y-sir)：``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
-- [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
-- [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
-- [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
-- [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)
 - [@bzggnveee](https://github.com/bzggnveee)：``./核心文件/8.0.24 (2100)/wx6_2.33``, ``./核心文件/8.0.24 (2100)/wx6_2.41``, ``./核心文件/8.0.24 (2100)/wx6_2.33``, and ``./核心文件/8.0.24 (2100)/wx6_2.41``
   - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
   - [Pull Request #10](https://github.com/TMLP-Team/WX-Configuration-Backups/pull/10)：更新 ``autoImport.sh``
+    - 修复微信用户ID解析
+    - 美化脚本
+    - 优化英文表达
+    - 使用 ``printf`` 替换多余的 ``echo``
+    - 添加用户协议
+- [@cuuemo](https://github.com/cuuemo)：``./核心文件/8.0.48 (2580)/wx6_2.44``
+- [@longli928](https://github.com/longli928)：``./核心文件/Play 8.0.48 (2588)/x7_3.0`` 和 ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
+- [@Y-sir](https://github.com/Y-sir)：``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
+- 来自 WX Repair Tool 官方 QQ 2 群的某匿名群友
+  - [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
+  - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
+  - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
+  - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)
 
 ---
 
@@ -215,6 +223,8 @@ The permissions, the owner, and the user group of all the files copied should ha
 
 By executing it locally with root privileges on your Android device after checking it, this script will automatically import the core data and FKZ_WX_DATA files for the WechatXposed plugin. 
 
+This script can be executed in Termux or MT Manager. Please use the system environment when executing in MT Manager. 
+
 ## Exceptions
 
 Here are some common exception handling methods in the WX Repair Tool.
@@ -237,12 +247,18 @@ The license of this repository complies with the upstream license, which is open
 - [https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed](https://github.com/Xposed-Modules-Repo/com.fkzhang.wechatxposed)
 - [https://github.com/Xposed-Modules-Repo/wx.repair.tool](https://github.com/Xposed-Modules-Repo/wx.repair.tool)
 - [@cuuemo](https://github.com/cuuemo): ``./核心文件/8.0.48 (2580)/wx6_2.44``
-- [@longli928](https://github.com/longli928): ``./核心文件/Play 8.0.48 (2588)/x7_3.0`` and ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
-- [@Y-sir](https://github.com/Y-sir): ``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
-- [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
-- [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
-- [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
-- [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)
 - [@bzggnveee](https://github.com/bzggnveee): ``./核心文件/8.0.24 (2100)/wx6_2.33``, ``./核心文件/8.0.24 (2100)/wx6_2.41``, ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.33``, and ``./FKZ_WX_DATA/8.0.24 (2100)/wx6_2.41``
   - [https://www.123865.com/s/U2rKVv-UeH4H](https://www.123865.com/s/U2rKVv-UeH4H)
   - [Pull Request #10](https://github.com/TMLP-Team/WX-Configuration-Backups/pull/10): Update ``autoImport.sh``
+    - Repair the parsing of WeChat user ID
+    - Beautify the script
+    - Optimize English expressions
+    - Use ``printf`` instead of redundant ``echo``
+    - Add the user agreement
+- [@longli928](https://github.com/longli928): ``./核心文件/Play 8.0.48 (2588)/x7_3.0`` and ``./FKZ_WX_DATA/Play 8.0.48 (2588)/x7_3.0``
+- [@Y-sir](https://github.com/Y-sir): ``./FKZ_WX_DATA/8.0.45 (2520)/wx6_v2.44``
+- An anonymous member from the Official QQ Group 2 of WX Repair Tool
+  - [https://www.coolapk.com/feed/65356995](https://www.coolapk.com/feed/65356995)
+  - [https://www.123684.com/s/gIe6Vv-jMHd3](https://www.123684.com/s/gIe6Vv-jMHd3)
+  - [https://wwbg.lanzoub.com/iEhha2yg9ehi](https://wwbg.lanzoub.com/iEhha2yg9ehi)
+  - [https://www.123684.com/s/78hZVv-G2Bn3](https://www.123684.com/s/78hZVv-G2Bn3)

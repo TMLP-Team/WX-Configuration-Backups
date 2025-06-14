@@ -36,7 +36,9 @@ printf "\033[1;32mSubmit core and FKZ_WX_DATA files to:\033[0m\n  %s\n" "${repos
 printf "\033[1;32m如有核心文件或 FKZ_WX_DATA，请提交 PR 至：\033[0m\n  %s\n\n" "${repositoryHomePage}"
 printf "\033[1;36mBy continuing, you agree to the terms of use and take responsibility for any risks.\033[0m\n"
 printf "\033[1;36m继续运行即表示您同意使用条款并承担相关风险。\033[0m\n\n"
-printf "\033[1;33mEnter 'y' to agree and continue, or any other key to exit: \033[0m"
+printf "\033[1;33mEnter 'y' to agree and continue, or any other key to exit. \033[0m\n"
+printf "\033[1;33m输入 'y' 同意并继续，或输入其它按键退出。\033[0m\n"
+printf ">>> "
 read -r user_input
 if [[ "${user_input}" != "y" && "${user_input}" != "Y" ]];
 then
