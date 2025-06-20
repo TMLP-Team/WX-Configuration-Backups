@@ -15,8 +15,10 @@ readonly fkzWxData="FKZ_WX_DATA"
 readonly coreData0FolderPath="/data/user/0/${wechatPackageName}/files"
 readonly coreData999FolderPath="/data/user/999/${wechatPackageName}/files"
 readonly fkzWxDataFolderPath="/data/data/${wechatPackageName}/databases"
+readonly fkzWxData999FolderPath="/data/user/999/${wechatPackageName}/databases"
 readonly fkzWxDataFileName="FKZ_WX_DATA"
 readonly fkzWxDataFilePath="${fkzWxDataFolderPath}/${fkzWxDataFileName}"
+readonly fkzWxData999FilePath="${fkzWxDataFolderPath}/${fkzWxDataFileName}"
 if [[ -n "${EXTERNAL_STORAGE}" ]];
 then
 	readonly deviceDownloadFolderPath="${EXTERNAL_STORAGE}/Download"
@@ -273,10 +275,9 @@ else
 	printf "\033[1;33m双开核心文件父目录 \"%s\" 不存在，跳过。\033[0m\n\n" "${coreData999FolderPath}"
 fi
 
-# FKZ_WX_DATA (31--36) #
+# FKZ_WX_DATA (31--37) #
 printf "\033[1;34m----- Processing FKZ_WX_DATA -----\033[0m\n"
 printf "\033[1;34m----- 处理 FKZ_WX_DATA -----\033[0m\n\n"
-fkzWxDataFolderInternalPath="${fkzWxDataFolderPath}"
 mkdir -p "${fkzWxDataFolderPath}" && chmod 755 "${fkzWxDataFolderPath}" && chown ${wechatUserId} "${fkzWxDataFolderPath}" && chgrp ${wechatUserId} "${fkzWxDataFolderPath}"
 if [[ $? -eq ${EXIT_SUCCESS} && -d "${fkzWxDataFolderPath}" ]];
 then
@@ -342,7 +343,7 @@ then
 		for filePath in $(find "${fkzWxDataDownloadFolderPath}" -type f -name "FKZ_WX_*")
 		do
 			fileName="$(basename "${filePath}")"
-			targetFilePath="${fkzWxDataFolderInternalPath}/${fileName}"
+			targetFilePath="${fkzWxDataFolderPath}/${fileName}"
 			cp "${filePath}" "${targetFilePath}" && chmod 660 "${targetFilePath}" && chown ${wechatUserId} "${targetFilePath}" && chgrp ${wechatUserId} "${targetFilePath}"
 			if [[ $? -ne ${EXIT_SUCCESS} || ! -f "${targetFilePath}" ]];
 			then
@@ -351,21 +352,50 @@ then
 		done
 		if [[ ${flag} -eq ${EXIT_SUCCESS} ]];
 		then
-			printf "\033[1;32mSuccessfully copied FKZ_WX_* files to \"%s\" with permissions 660, owner/group %s.\033[0m\n" "${fkzWxDataFolderInternalPath}" "${wechatUserId}"
-			printf "\033[1;32m成功复制 FKZ_WX_* 文件到 \"%s\"，权限 660，所有者/用户组 %s。\033[0m\n\n" "${fkzWxDataFolderInternalPath}" "${wechatUserId}"
+			printf "\033[1;32mSuccessfully copied FKZ_WX_* files to \"%s\" with permissions 660, owner/group %s.\033[0m\n" "${fkzWxDataFolderPath}" "${wechatUserId}"
+			printf "\033[1;32m成功复制 FKZ_WX_* 文件到 \"%s\"，权限 660，所有者/用户组 %s。\033[0m\n\n" "${fkzWxDataFolderPath}" "${wechatUserId}"
 		else
-			printf "\033[1;31mFailed to copy FKZ_WX_* files to \"%s\" with permissions 660, owner/group %s (35).\033[0m\n" "${fkzWxDataFolderInternalPath}" "${wechatUserId}"
+			printf "\033[1;31mFailed to copy FKZ_WX_* files to \"%s\" with permissions 660, owner/group %s (35).\033[0m\n" "${fkzWxDataFolderPath}" "${wechatUserId}"
 			printf "\033[1;31m无法复制 FKZ_WX_* 文件到 \"%s\"，权限 660，所有者/用户组 %s（35）。\033[0m\n"
 			printf "\033[1;33mPlease import FKZ_WX_DATA using WX Repair Tool or manually.\033[0m\n"
 			printf "\033[1;33m请使用 WX Repair Tool 或手动导入 FKZ_WX_DATA（35）。\033[0m\n\n"
 			exit 35
+		fi
+		if [[ -d "$(dirname "${fkzWxData999FolderPath}")" && ! -f "${fkzWxData999FilePath}" ]];
+		then
+			if mkdir -p "${fkzWxData999FolderPath}" && chmod 755 "${fkzWxData999FolderPath}" && chown ${wechatUserId} "${fkzWxData999FolderPath}" && chgrp ${wechatUserId} "${fkzWxData999FolderPath}";
+			then
+				for filePath in $(find "${fkzWxDataDownloadFolderPath}" -type f -name "FKZ_WX_*")
+				do
+					fileName="$(basename "${filePath}")"
+					targetFilePath="${fkzWxData999FolderPath}/${fileName}"
+					cp "${filePath}" "${targetFilePath}" && chmod 660 "${targetFilePath}" && chown ${wechatUserId} "${targetFilePath}" && chgrp ${wechatUserId} "${targetFilePath}"
+					if [[ $? -ne ${EXIT_SUCCESS} || ! -f "${targetFilePath}" ]];
+					then
+						flag=${EXIT_FAILURE}
+					fi
+				done
+			else
+				flag=${EXIT_FAILURE}
+			fi
+			if [[ ${flag} -eq ${EXIT_SUCCESS} ]];
+			then
+				printf "\033[1;32mSuccessfully copied FKZ_WX_* files to \"%s\" with permissions 660, owner/group %s.\033[0m\n" "${fkzWxData999FolderPath}" "${wechatUserId}"
+				printf "\033[1;32m成功复制 FKZ_WX_* 文件到 \"%s\"，权限 660，所有者/用户组 %s。\033[0m\n\n" "${fkzWxData999FolderPath}" "${wechatUserId}"
+			else
+				printf "\033[1;31mFailed to copy FKZ_WX_* files to \"%s\" with permissions 660, owner/group %s (36).\033[0m\n" "${fkzWxData999FolderPath}" "${wechatUserId}"
+				printf "\033[1;31m无法复制 FKZ_WX_* 文件到 \"%s\"，权限 660，所有者/用户组 %s（36）。\033[0m\n"
+				printf "\033[1;33mPlease import FKZ_WX_DATA using WX Repair Tool or manually.\033[0m\n"
+				printf "\033[1;33m请使用 WX Repair Tool 或手动导入 FKZ_WX_DATA（36）。\033[0m\n\n"
+				exit 36
 			fi
 		fi
-	else
-		printf "\033[1;31mFailed to create directory \"%s\" for FKZ_WX_DATA (36).\033[0m\n" "${fkzWxDataFolderPath}"
-		printf "\033[1;31m无法创建 FKZ_WX_DATA 目录 \"%s\"（36）。\033[0m\n\n" "${fkzWxDataFolderPath}"
-		exit 36
 	fi
+else
+	printf "\033[1;31mFailed to create directory \"%s\" for FKZ_WX_DATA (37).\033[0m\n" "${fkzWxDataFolderPath}"
+	printf "\033[1;31m无法创建 FKZ_WX_DATA 目录 \"%s\"（37）。\033[0m\n\n" "${fkzWxDataFolderPath}"
+	exit 37
+fi
 
 # Restart #
 printf "\033[1;34m----- Restarting WeChat -----\033[0m\n"
